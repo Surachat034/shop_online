@@ -19,8 +19,11 @@
     $objQuery = mysqli_query($Connection,$strSQL);
     $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
-    $strSQL2 = "SELECT * FROM product";
+    $strSQL2 = "SELECT * FROM product INNER JOIN category ON product.category_id = category.category_id";
     $objQuery2 = mysqli_query($Connection,$strSQL2);
+
+    $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery10 = mysqli_query($Connection,$strSQL10);
 
 ?>
 <!DOCTYPE html>
@@ -41,12 +44,13 @@
       <tr>
         <td bgcolor="#33CCFF">ลำดับ</td>
         <td bgcolor="#33CCFF">รหัสสินค้า</td>
+        <td bgcolor="#33CCFF">หมวดหมู่</td>
         <td bgcolor="#33CCFF">ชื่อสินค้า</td>
         <td bgcolor="#33CCFF">รายละเอียดสินค้า</td>
-        <td bgcolor="#33CCFF">รูปที่ 1</td>
-        <td bgcolor="#33CCFF">รูปที่ 2</td>
-        <td bgcolor="#33CCFF">รูปที่ 3</td>
-        <td bgcolor="#33CCFF">รูปที่ 4</td>
+        <td bgcolor="#33CCFF" width="40px">รูปที่ 1</td>
+        <td bgcolor="#33CCFF" width="40px">รูปที่ 2</td>
+        <td bgcolor="#33CCFF" width="40px">รูปที่ 3</td>
+        <td bgcolor="#33CCFF" width="40px">รูปที่ 4</td>
         <td bgcolor="#33CCFF">ราคาสินค้า</td>
         <td bgcolor="#33CCFF">สต๊อก</td>
         <td bgcolor="#33CCFF" width="60px">ตัวเลือก</td>
@@ -57,6 +61,7 @@
       <tr>
         <td valign="top"><?php echo $objResult2["product_id"];?></td>
         <td valign="top"><?php echo $objResult2["product_code"];?></td>
+        <td valign="top"><?php echo $objResult2["category_name"];?></td>
         <td valign="top"><?php echo $objResult2["product_name"];?></td>
         <td align="left" valign="top"><?php echo nl2br($objResult2["product_detail"]);?></td>
         <td valign="top">

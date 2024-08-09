@@ -12,6 +12,9 @@
     $objQuery = mysqli_query($Connection,$strSQL);
     $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
+    $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery10 = mysqli_query($Connection,$strSQL10);
+
     $order_id = null;
 
     if(isset($_GET["order_id"])){
@@ -59,7 +62,7 @@
   </div>
   <div class="shop_div_9">
     <?php
-    if ($objResult2["order_img"] == "ยังไม่ได้แนปหลักฐานการโอนเงิน") {
+    if ($objResult2["order_img"] == "ยังไม่ได้ส่งหลักฐานการโอนเงิน") {
       echo "ยังไม่ได้ส่งหลักฐานการโอนเงิน";
     }else{
     ?>

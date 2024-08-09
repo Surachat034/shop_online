@@ -19,6 +19,9 @@
     $objQuery = mysqli_query($Connection,$strSQL);
     $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
+    $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery10 = mysqli_query($Connection,$strSQL10);
+
     if (isset($_POST["submit"])) {
 
       if ($_FILES["shop_information_logo"]["name"] != NULL) {
@@ -55,7 +58,7 @@
   <link rel="stylesheet" type="text/css" href="../assets/css/navigationbar.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/shop.css">
 </head>
-<body>
+<body> <!--
   <?php include '../includes/navbar_admin.php';?>
   <div class="shop_div_2">
     <span class="shop_span_7">ข้อมูลร้าน : <?php echo $objResult["shop_information_name"]; ?></span>
@@ -76,7 +79,7 @@
       <input type="hidden" name="shop_information_id" id="shop_information_id" value="<?php echo $objResult["shop_information_id"];?>">
     </form>
   </div>
-  <hr>
+  <hr> -->
   <?php include '../includes/footer.php';?>
   <?php mysqli_close($Connection); ?>
 </body>

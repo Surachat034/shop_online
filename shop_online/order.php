@@ -12,11 +12,14 @@
     $objQuery = mysqli_query($Connection,$strSQL);
     $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
-    $strSQL2 = "SELECT * FROM order_list INNER JOIN (member,product) ON (order_list.member_id = member.member_id AND order_list.product_id = product.product_id) WHERE member_username = '".$_SESSION['member_username']."'";
+    $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery10 = mysqli_query($Connection,$strSQL10);
+
+    $strSQL2 = "SELECT * FROM order_list INNER JOIN member ON order_list.member_id = member.member_id WHERE member_username = '".$_SESSION['member_username']."'";
     $objQuery2 = mysqli_query($Connection,$strSQL2);
     $objResult2 = mysqli_fetch_array($objQuery2,MYSQLI_ASSOC);
 
-    $strSQL3 = "SELECT * FROM order_list INNER JOIN (member,product) ON (order_list.member_id = member.member_id AND order_list.product_id = product.product_id) WHERE member_username = '".$_SESSION['member_username']."'";
+    $strSQL3 = "SELECT * FROM order_list INNER JOIN (member,transport) ON (order_list.member_id = member.member_id AND order_list.transport_id = transport.transport_id) WHERE member_username = '".$_SESSION['member_username']."'";
     $objQuery3 = mysqli_query($Connection,$strSQL3);
 
     $strSQL3 .= "ORDER BY order_id DESC";
@@ -47,23 +50,26 @@
     <div class="shop_div_7">
       <table class="shop_table_1">
         <tr>
-          <td bgcolor="#33CCFF">ชื่อสินค้า</td>
-          <td bgcolor="#33CCFF">ราคา</td>
-          <td bgcolor="#33CCFF">จำนวนที่สั่งซื้อ</td>
+          <td bgcolor="#33CCFF"></td>
+          <td bgcolor="#33CCFF">เลขออเดอร์</td>
+          <td bgcolor="#33CCFF">วันเวลาที่สั่งชื้อ</td>
+          <td bgcolor="#33CCFF">จัดส่ง</td>
+          <td bgcolor="#33CCFF">Tracking Number</td>
           <td bgcolor="#33CCFF">รวมเป็นเงิน</td>
-          <td bgcolor="#33CCFF">วันเวลาที่สั่งซื้อ</td>
           <td bgcolor="#33CCFF">สถานะการสั่งซื้อ</td>
+          <td bgcolor="#33CCFF">รายละเอียด</td>
           <td bgcolor="#33CCFF">หลักฐานการโอนเงิน</td>
         </tr>
         <?php
         while ($objResult3 = mysqli_fetch_array($objQuery3,MYSQLI_ASSOC)) {
         ?>
         <tr>
-          <td><?php echo $objResult3["product_name"]; ?></td>
-          <td><?php echo $objResult3["product_price"]; ?> บาท</td>
-          <td><?php echo $objResult3["order_amount"]; ?></td>
-          <td><?php echo $objResult3["product_price"] * $objResult3["order_amount"]; ?> บาท</td>
+          <td><a class="shop_a_3" href="JavaScript:if(confirm('คุณต้องการลบออเดอร์ใช่หรือไม่')==true){window.location='order_delete.php?order_id=<?php echo $objResult2["order_id"];?>&order_ordernumber=<?php echo $objResult2["order_ordernumber"];?>';}"><i class="fa fa-times"></i></a></td>
+          <td><?php echo $objResult3["order_ordernumber"]; ?></td>
           <td><?php echo $objResult3["order_date"]; ?></td>
+          <td><?php echo $objResult3["transport_name"]." ค่าจัดส่ง ".$objResult3["transport_price"]." บาท"; ?></td>
+          <td><?php echo $objResult3["tracking_number"]; ?></td>
+          <td><?php echo $objResult3["order_price"] + $objResult3["transport_price"]." บาท";?></td>
           <td>
             <?php
             if ($objResult3["order_status"] == 'อยู่ระหว่างรอการส่งหลักฐานการโอนเงิน') {
@@ -75,6 +81,7 @@
             }
             ?>
           </td>
+          <td><a class="shop_a_2" href="order_view.php?order_ordernumber=<?php echo $objResult3["order_ordernumber"];?>"><i class="fa fa-eye"></i></a></td>
           <td><a class="shop_a_2" href="money_transfer_slip.php?order_id=<?php echo $objResult3["order_id"];?>"><i class="fa fa-clipboard"></i></a></td>
         </tr>
         <?php

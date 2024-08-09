@@ -1,17 +1,11 @@
 <?php
 
-    require_once('../connections/mysqli.php');
+    require_once('connections/mysqli.php');
 
     session_start();
 
     if($_SESSION == NULL){
-        header("location:../login.php");
-        exit();
-    }
-
-    if($_SESSION['member_level'] != "admin")
-    {
-        header("location:../index.php");
+        header("location:login.php");
         exit();
     }
 
@@ -40,7 +34,7 @@
     $strSQL5 = "DELETE FROM order_list WHERE order_id = '".$order_id."' ";
     $objQuery5 = mysqli_query($Connection,$strSQL5);
 
-    header("location:order_list.php");
+    header("location:order.php");
 
     mysqli_close($Connection);
 

@@ -22,6 +22,9 @@
     $strSQL2 = "SELECT * FROM member";
     $objQuery2 = mysqli_query($Connection,$strSQL2);
 
+    $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery10 = mysqli_query($Connection,$strSQL10);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

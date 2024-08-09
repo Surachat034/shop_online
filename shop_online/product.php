@@ -8,6 +8,9 @@
     $objQuery = mysqli_query($Connection,$strSQL);
     $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
+    $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery10 = mysqli_query($Connection,$strSQL10);
+
     $product_code = null;
 
     if(isset($_GET["product_code"])){
@@ -123,6 +126,7 @@
             <a href="product_order.php?product_id=<?php echo $objResult2["product_id"];?>"><button class="shop_button_1">ชื้อสินค้า</button></a>
           </div>
         </td>
+        <!--
         <td width="20%" valign="top">
           <span class="shop_span_4">Logo ของร้าน</span>
           <img src="images/shop_information/<?php echo $objResult["shop_information_logo"];?>" style="width:100%" height="300px"/>
@@ -130,7 +134,7 @@
           <p class="shop_p_2">ที่อยู่ : <?php echo $objResult["shop_information_address"];?></p>
           <p class="shop_p_2">อีเมล์ : <?php echo $objResult["shop_information_email"];?></p>
           <p class="shop_p_2">เบอร์โทรศัพท์ : <?php echo $objResult["shop_information_tel"];?></p>
-        </td>
+        </td> -->
       </tr>
     </table>
   </div>

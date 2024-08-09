@@ -19,6 +19,12 @@
     $objQuery = mysqli_query($Connection,$strSQL);
     $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
+    $strSQL4 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery4 = mysqli_query($Connection,$strSQL4);
+
+    $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery10 = mysqli_query($Connection,$strSQL10);
+
     $product_id = null;
 
     if(isset($_GET["product_id"])){
@@ -71,7 +77,7 @@
 
       }
 
-      $strSQL3 = "UPDATE product SET product_code = '".$_POST["product_code"]."' , product_name = '".$_POST["product_name"]."' , product_detail = '".$_POST["product_detail"]."' , product_price = '".$_POST["product_price"]."' , product_stock = '".$_POST["product_stock"]."' WHERE product_id = '".$_POST["product_id"]."' ";
+      $strSQL3 = "UPDATE product SET product_code = '".$_POST["product_code"]."' , product_name = '".$_POST["product_name"]."' , product_detail = '".$_POST["product_detail"]."' , product_price = '".$_POST["product_price"]."' , product_stock = '".$_POST["product_stock"]."' , category_id = '".$_POST["category_id"]."' WHERE product_id = '".$_POST["product_id"]."' ";
       $objQuery3 = mysqli_query($Connection,$strSQL3);
 
       header("location:product.php");
@@ -154,6 +160,16 @@
         <input type="text" name="product_price" id="product_price" class="shop_input_1" value="<?php echo $objResult2["product_price"]; ?>"/>
         <span class="shop_span_8">สต๊อก</span>
         <input type="text" name="product_stock" id="product_stock" class="shop_input_1" value="<?php echo $objResult2["product_stock"]; ?>"/>
+        <span class="shop_span_8">หมวดหมู่</span>
+        <select name="category_id" id="category_id" class="shop_select_1">
+        <?php
+        while ($objResult4 = mysqli_fetch_array($objQuery4)) {
+        ?>
+        <option value="<?php echo $objResult4[0];?>" <?php if($objResult4["category_id"] == $objResult2["category_id"]) echo 'selected="selected"'; ?>><?php echo $objResult4[2];?></option>
+        <?php
+        }
+        ?>
+        </select>
         <input type="submit" name="submit" id="submit" class="shop_input_4" value="บันทึกข้อมูล"/>
       </div>
       <input type="hidden" name="product_id" id="product_id" value="<?php echo $objResult2["product_id"];?>">

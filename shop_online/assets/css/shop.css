@@ -36,6 +36,13 @@ div.shop_div_4 {
   margin-top: 20px;
   text-align: center;
 }
+div.shop_div_4_1 {
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+  margin-right: 20px;
+  text-align: right;
+}
 div.shop_div_5 {
   display: block;
   margin: auto;
@@ -103,6 +110,14 @@ div.shop_div_10_1 {
   border-radius: 20px;
   border-bottom: 5px solid #BEBEBE;
   background-color: #DCDCDC;
+}
+div.shop_div_11 {
+  display: block;
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: right;
 }
 
 /* span */
@@ -182,6 +197,26 @@ span.shop_span_7_3 {
   color: #000;
   font-size: 25px;
   margin-top: 40px;
+}
+span.shop_span_7_4 {
+  display: block;
+  color: #000;
+  font-size: 25px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+span.shop_span_7_4_1 {
+  color: red;
+  font-size: 25px;
+  text-decoration: underline;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+span.shop_span_7_5 {
+  display: block;
+  color: #000;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 span.shop_span_8 {
   display: block;
@@ -326,6 +361,20 @@ input.shop_input_4:hover {
   font-family: mitrregular;
   background-color: #45a049;
 }
+input.shop_input_5 {
+  font-family: mitrregular;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+input.shop_input_5:hover {
+  font-family: mitrregular;
+  background-color: #45a049;
+}
 
 ::-webkit-file-upload-button {
   font-family: mitrregular;
@@ -369,6 +418,13 @@ select.shop_select_1 {
   border-radius: 4px;
   box-sizing: border-box;
 }
+select.shop_select_2 {
+  font-family: mitrregular;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 
 /* button */
 button.shop_button_1 {
@@ -401,6 +457,23 @@ button.shop_button_2 {
   cursor: pointer;
 }
 button.shop_button_2:hover {
+  background-color: #e7e7e7;
+}
+button.shop_button_3 {
+  font-family: mitrregular;
+  background-color: #CCC;
+  border: 3px solid #999;
+  border-radius: 20px;
+  color: #000;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+button.shop_button_3:hover {
   background-color: #e7e7e7;
 }
 

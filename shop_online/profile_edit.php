@@ -8,6 +8,9 @@
     $objQuery = mysqli_query($Connection,$strSQL);
     $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
+    $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery10 = mysqli_query($Connection,$strSQL10);
+
     $strSQL2 = "SELECT * FROM member WHERE member_username = '".$_SESSION['member_username']."' ";
     $objQuery2 = mysqli_query($Connection,$strSQL2);
     $objResult2 = mysqli_fetch_array($objQuery2,MYSQLI_ASSOC);

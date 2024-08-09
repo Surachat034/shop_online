@@ -8,8 +8,11 @@
     $objQuery = mysqli_query($Connection,$strSQL);
     $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
-    $strSQL2 = "SELECT * FROM product";
+    $strSQL2 = "SELECT * FROM product ORDER BY product_id DESC";
     $objQuery2 = mysqli_query($Connection,$strSQL2);
+
+    $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery10 = mysqli_query($Connection,$strSQL10);
 
 ?>
 <!DOCTYPE html>
@@ -53,11 +56,11 @@
   <?php include 'includes/navbar.php';?>
   <div class="shop_div_1_1">
     <div class="slideshow-container">
-    <div class="mySlides fade">
-        <img src="images/slideshow/sl2.jpg" width="100%" height="800px">
-      </div>
       <div class="mySlides fade">
         <img src="images/slideshow/sl1.jpg" width="100%" height="800px">
+      </div>
+      <div class="mySlides fade">
+        <img src="images/slideshow/sl2.jpg" width="100%" height="800px">
       </div>
       
     </div>

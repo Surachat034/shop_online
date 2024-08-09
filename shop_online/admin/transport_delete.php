@@ -15,12 +15,14 @@
         exit();
     }
 
-    $order_id = $_GET["order_id"];
-
-    $strSQL = "UPDATE order_list SET order_status = 'อยู่ระหว่างจัดส่งสินค้า' , tracking_number = 'รอการอัพเดทภายใน 24 ชม.' WHERE order_id = '".$order_id."' ";
+    $transport_id = $_GET["transport_id"];
+    $strSQL = "DELETE FROM transport WHERE transport_id = '".$transport_id."' ";
     $objQuery = mysqli_query($Connection,$strSQL);
 
-    header("location:order_list.php");
+    if (mysqli_affected_rows($Connection)) {
+        header("location:transport.php");
+        exit();
+    }
 
     mysqli_close($Connection);
 

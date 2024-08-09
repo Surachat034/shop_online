@@ -19,7 +19,7 @@
     $objQuery = mysqli_query($Connection,$strSQL);
     $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
-    $strSQL2 = "SELECT * FROM payment";
+    $strSQL2 = "SELECT * FROM transport ORDER BY transport_id ASC";
     $objQuery2 = mysqli_query($Connection,$strSQL2);
 
     $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
@@ -39,24 +39,20 @@
 <body>
   <?php include '../includes/navbar_admin.php';?>
   <div class="shop_div_10">
-    <span class="shop_span_7_2">ข้อมูลการชำระเงิน</span>
+    <span class="shop_span_7_2">ข้อมูลการขนส่งสินค้าทั้งหมด <a class="shop_a_5" href="transport_add.php">เพิ่มขนส่ง <i class="fa fa-plus-circle"></i></a></span>
     <table class="shop_table_1">
       <tr>
-        <td bgcolor="#33CCFF">ลำดับ</td>
-        <td bgcolor="#33CCFF">ธนาคาร</td>
-        <td bgcolor="#33CCFF">เลขบัญชี</td>
-        <td bgcolor="#33CCFF">ชื่อบัญชี</td>
-        <td bgcolor="#33CCFF">ตัวเลือก</td>
+        <td bgcolor="#33CCFF">ขนส่ง (บริษัท)</td>
+        <td bgcolor="#33CCFF">ราคาขนส่ง</td>
+        <td bgcolor="#33CCFF" width="60px">ตัวเลือก</td>
       </tr>
       <?php
       while ($objResult2 = mysqli_fetch_array($objQuery2,MYSQLI_ASSOC)) {
       ?>
       <tr>
-        <td><?php echo $objResult2["payment_id"];?></td>
-        <td><?php echo $objResult2["payment_bank_name"];?></td>
-        <td><?php echo $objResult2["payment_number"];?></td>
-        <td><?php echo $objResult2["payment_account_name"];?></td>
-        <td><a class="shop_a_3" href="payment_edit.php?payment_id=<?php echo $objResult2["payment_id"];?>"><i class="fa fa-pencil-square"></i></a></td>
+        <td valign="top"><?php echo $objResult2["transport_name"];?></td>
+        <td valign="top"><?php echo $objResult2["transport_price"];?></td>
+        <td valign="top"><a class="shop_a_3" href="transport_edit.php?transport_id=<?php echo $objResult2["transport_id"];?>"><i class="fa fa-pencil-square"></i></a> , <a class="shop_a_3" href="JavaScript:if(confirm('คุณต้องการลบข้อมูลใช่หรือไม่')==true){window.location='transport_delete.php?transport_id=<?php echo $objResult2["transport_id"];?>';}"><i class="fa fa-trash"></i></a></td>
       </tr>
       <?php
       }

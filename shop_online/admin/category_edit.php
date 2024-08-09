@@ -22,11 +22,23 @@
     $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
     $objQuery10 = mysqli_query($Connection,$strSQL10);
 
-    $member_id = $_GET["member_id"];
+    $category_id = null;
 
-    $strSQL2 = "SELECT * FROM member WHERE member_id = '".$member_id."'";
+    if(isset($_GET["category_id"])){
+        $category_id = $_GET["category_id"];
+    }
+
+    $strSQL2 = "SELECT * FROM category WHERE category_id = '".$category_id."' ";
     $objQuery2 = mysqli_query($Connection,$strSQL2);
     $objResult2 = mysqli_fetch_array($objQuery2,MYSQLI_ASSOC);
+
+    if (isset($_POST["submit"])) {
+      $strSQL3 = "UPDATE category SET category_num = '".$_POST["category_num"]."' , category_name = '".$_POST["category_name"]."' WHERE category_id = '".$_POST["category_id"]."' ";
+      $objQuery3 = mysqli_query($Connection,$strSQL3);
+
+      header("location:category.php");
+      exit();
+    }
 
 ?>
 <!DOCTYPE html>
@@ -42,23 +54,17 @@
 <body>
   <?php include '../includes/navbar_admin.php';?>
   <div class="shop_div_2">
-    <span class="shop_span_7">ข้อมูลลูกค้า ID : <?php echo $objResult2["member_id"]; ?></span>
-    <table align="center" cellpadding="10">
-      <tr>
-        <td valign="top">
-          <img src="../images/member/<?php echo $objResult2["member_img"];?>" class="shop_img_1" width="300px" height="300px">
-        </td>
-        <td align="left" valign="top">
-          <p class="shop_p_3">ชื่อ - นามสกุล : <?php echo $objResult2["member_name"]; ?></p>
-          <p class="shop_p_3">อีเมล์ : <?php echo $objResult2["member_email"]; ?></p>
-          <p class="shop_p_3">ที่อยู่ : <?php echo nl2br($objResult2["member_address"]); ?></p>
-          <p class="shop_p_3">เบอร์โทรศัพท์ : <?php echo $objResult2["member_tel"]; ?></p>
-          <div class="shop_div_4">
-            <a href="order_list.php"><button class="shop_button_2">ย้อนกลับ</button></a>
-          </div>
-        </td>
-      </tr>
-    </table>
+    <span class="shop_span_7">ID หลัก : <?php echo $objResult2["category_id"]; ?></span>
+    <form name="category_edit" method="post">
+      <div class="shop_div_5">
+        <span class="shop_span_8">ลำดับที่</span>
+        <input type="text" name="category_num" id="category_num" class="shop_input_1" value="<?php echo $objResult2["category_num"]; ?>"/>
+        <span class="shop_span_8">ชื่อหมวดหมู่</span>
+        <input type="text" name="category_name" id="category_name" class="shop_input_1" value="<?php echo $objResult2["category_name"]; ?>"/>
+        <input type="submit" name="submit" id="submit" class="shop_input_4" value="บันทึกข้อมูล"/>
+      </div>
+      <input type="hidden" name="category_id" id="category_id" value="<?php echo $objResult2["category_id"];?>">
+    </form>
   </div>
   <hr>
   <?php include '../includes/footer.php';?>

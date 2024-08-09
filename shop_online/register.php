@@ -12,6 +12,9 @@
   $objQuery = mysqli_query($Connection,$strSQL);
   $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
+  $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
+  $objQuery10 = mysqli_query($Connection,$strSQL10);
+
   if(isset($_POST["submit"])){
 
     $strSQL1 = "SELECT * FROM member WHERE member_username = '".trim($_POST['member_username'])."'";

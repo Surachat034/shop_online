@@ -22,19 +22,30 @@
     $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
     $objQuery10 = mysqli_query($Connection,$strSQL10);
 
+    $order_id = null;
+
+    if(isset($_GET["order_id"])){
+        $order_id = $_GET["order_id"];
+    }
+
+    $strSQL2 = "SELECT * FROM order_list WHERE order_id = '".$order_id."' ";
+    $objQuery2 = mysqli_query($Connection,$strSQL2);
+    $objResult2 = mysqli_fetch_array($objQuery2,MYSQLI_ASSOC);
+
     if (isset($_POST["submit"])) {
+      $strSQL3 = "UPDATE order_list
+        SET tracking_number = '{$_POST["tracking_number"]}',order_status = 'ส่งสินค้าสำเร็จ'
+        WHERE order_id = '{$_POST["order_id"]}'";
+      $objQuery3 = mysqli_query($Connection,$strSQL3);
 
-      $strSQL2 = "UPDATE shop_information SET shop_information_title = '".$_POST["shop_information_title"]."' WHERE shop_information_id = '".$_POST["shop_information_id"]."'";
-      $objQuery2 = mysqli_query($Connection,$strSQL2);
-
-      header("location:title.php");
-
+      header("location:order_list.php");
+      exit();
     }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head><!--
+<head>
   <meta charset="UTF-8">
   <title><?php echo $objResult["shop_information_title"] ?></title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,18 +56,18 @@
 <body>
   <?php include '../includes/navbar_admin.php';?>
   <div class="shop_div_2">
-    <span class="shop_span_7">กำหนด Title ร้าน : <?php echo $objResult["shop_information_name"]; ?></span>
-    <form name="title" method="post">
-      <div class="shop_div_5_1">
-        <span class="shop_span_8">Title เว็บไซต์</span>
-        <input type="text" name="shop_information_title" id="shop_information_title" class="shop_input_1" value="<?php echo $objResult["shop_information_title"]; ?>"/>
+    <span class="shop_span_7">เลขออเดอร์ : <?php echo $objResult2["order_ordernumber"]; ?></span>
+    <form name="tracking_number_edit" method="post">
+      <div class="shop_div_5">
+        <span class="shop_span_8">Tracking Number</span>
+        <input type="text" name="tracking_number" id="tracking_number" class="shop_input_1" value="<?php echo $objResult2["tracking_number"]; ?>"/>
         <input type="submit" name="submit" id="submit" class="shop_input_4" value="บันทึกข้อมูล"/>
       </div>
-      <input type="hidden" name="shop_information_id" id="shop_information_id" value="<?php echo $objResult["shop_information_id"];?>">
+      <input type="hidden" name="order_id" id="order_id" value="<?php echo $objResult2["order_id"];?>">
     </form>
-  </div>-->
-</body>
+  </div>
   <hr>
   <?php include '../includes/footer.php';?>
-  <?php mysqli_close($Connection); ?>  
+  <?php mysqli_close($Connection); ?>
+</body>
 </html>

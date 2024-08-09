@@ -22,21 +22,21 @@
     $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
     $objQuery10 = mysqli_query($Connection,$strSQL10);
 
-    $payment_id = null;
+    $transport_id = null;
 
-    if(isset($_GET["payment_id"])){
-        $payment_id = $_GET["payment_id"];
+    if(isset($_GET["transport_id"])){
+        $transport_id = $_GET["transport_id"];
     }
 
-    $strSQL2 = "SELECT * FROM payment WHERE payment_id = '".$payment_id."' ";
+    $strSQL2 = "SELECT * FROM transport WHERE transport_id = '".$transport_id."' ";
     $objQuery2 = mysqli_query($Connection,$strSQL2);
     $objResult2 = mysqli_fetch_array($objQuery2,MYSQLI_ASSOC);
 
     if (isset($_POST["submit"])) {
-      $strSQL3 = "UPDATE payment SET payment_number = '".$_POST["payment_number"]."' , payment_account_name = '".$_POST["payment_account_name"]."' WHERE payment_id = '".$_POST["payment_id"]."' ";
+      $strSQL3 = "UPDATE transport SET transport_name = '".$_POST["transport_name"]."' , transport_price = '".$_POST["transport_price"]."' WHERE transport_id = '".$_POST["transport_id"]."' ";
       $objQuery3 = mysqli_query($Connection,$strSQL3);
 
-      header("location:payment.php");
+      header("location:transport.php");
       exit();
     }
 
@@ -54,16 +54,16 @@
 <body>
   <?php include '../includes/navbar_admin.php';?>
   <div class="shop_div_2">
-    <span class="shop_span_7"><?php echo $objResult2["payment_bank_name"]; ?></span>
-    <form name="payment_edit" method="post">
+    <span class="shop_span_7">ID ขนส่ง : <?php echo $objResult2["transport_id"]; ?></span>
+    <form name="transport_edit" method="post">
       <div class="shop_div_5">
-        <span class="shop_span_8">เลขบัญชี</span>
-        <input type="text" name="payment_number" id="payment_number" class="shop_input_1" value="<?php echo $objResult2["payment_number"]; ?>"/>
-        <span class="shop_span_8">ชื่อบัญชี</span>
-        <input type="text" name="payment_account_name" id="payment_account_name" class="shop_input_1" value="<?php echo $objResult2["payment_account_name"]; ?>"/>
+        <span class="shop_span_8">ขนส่ง (บริษัท)</span>
+        <input type="text" name="transport_name" id="transport_name" class="shop_input_1" value="<?php echo $objResult2["transport_name"]; ?>"/>
+        <span class="shop_span_8">ราคาขนส่ง</span>
+        <input type="text" name="transport_price" id="transport_price" class="shop_input_1" value="<?php echo $objResult2["transport_price"]; ?>"/>
         <input type="submit" name="submit" id="submit" class="shop_input_4" value="บันทึกข้อมูล"/>
       </div>
-      <input type="hidden" name="payment_id" id="payment_id" value="<?php echo $objResult2["payment_id"];?>">
+      <input type="hidden" name="transport_id" id="transport_id" value="<?php echo $objResult2["transport_id"];?>">
     </form>
   </div>
   <hr>

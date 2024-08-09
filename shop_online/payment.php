@@ -15,6 +15,9 @@
     $strSQL2 = "SELECT * FROM payment";
     $objQuery2 = mysqli_query($Connection,$strSQL2);
 
+    $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery10 = mysqli_query($Connection,$strSQL10);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,9 +35,9 @@
     <span class="shop_span_7">ข้อมูลการชำระเงิน</span>
     <table align="center" cellpadding="10">
       <tr>
-        <td valign="top">
+       <!-- <td valign="top">
           <img src="images/shop_information/<?php echo $objResult["shop_information_logo"];?>" class="shop_img_1" width="300px" height="300px">
-        </td>
+        </td> -->
         <td align="left" valign="top">
           <?php
           while ($objResult2 = mysqli_fetch_array($objQuery2,MYSQLI_ASSOC)) {

@@ -19,6 +19,12 @@
     $objQuery = mysqli_query($Connection,$strSQL);
     $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
+    $strSQL3 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery3 = mysqli_query($Connection,$strSQL3);
+
+    $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery10 = mysqli_query($Connection,$strSQL10);
+
     if (isset($_POST["submit"])) {
 
       $target_dir = "../images/product/";
@@ -32,7 +38,7 @@
       move_uploaded_file($_FILES["product_img3"]["tmp_name"], $target_file3);
       move_uploaded_file($_FILES["product_img4"]["tmp_name"], $target_file4);
 
-      $strSQL2 = "INSERT INTO product (product_code,product_name,product_detail,product_img1,product_img2,product_img3,product_img4,product_price,product_stock) VALUES ('".$_POST["product_code"]."','".$_POST["product_name"]."','".$_POST["product_detail"]."','".$_FILES["product_img1"]["name"]."','".$_FILES["product_img2"]["name"]."','".$_FILES["product_img3"]["name"]."','".$_FILES["product_img4"]["name"]."','".$_POST["product_price"]."','".$_POST["product_stock"]."')";
+      $strSQL2 = "INSERT INTO product (product_code,product_name,product_detail,product_img1,product_img2,product_img3,product_img4,product_price,product_stock,category_id) VALUES ('".$_POST["product_code"]."','".$_POST["product_name"]."','".$_POST["product_detail"]."','".$_FILES["product_img1"]["name"]."','".$_FILES["product_img2"]["name"]."','".$_FILES["product_img3"]["name"]."','".$_FILES["product_img4"]["name"]."','".$_POST["product_price"]."','".$_POST["product_stock"]."','".$_POST["category_id"]."')";
       $objQuery2 = mysqli_query($Connection,$strSQL2);
 
       header("location:product.php");
@@ -74,6 +80,16 @@
         <input type="text" name="product_price" id="product_price" class="shop_input_1" required=""/>
         <span class="shop_span_8">สต๊อก</span>
         <input type="text" name="product_stock" id="product_stock" class="shop_input_1" required=""/>
+        <span class="shop_span_8">หมวดหมู่</span>
+        <select name="category_id" id="category_id" class="shop_select_1">
+        <?php
+        while ($objResult3 = mysqli_fetch_array($objQuery3)) {
+        ?>
+        <option value="<?php echo $objResult3[0];?>"><?php echo $objResult3[2];?></option>
+        <?php
+        }
+        ?>
+        </select>
         <input type="submit" name="submit" id="submit" class="shop_input_4" value="บันทึกสินค้า"/>
       </div>
     </form>

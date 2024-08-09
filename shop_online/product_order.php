@@ -12,6 +12,9 @@
     $objQuery = mysqli_query($Connection,$strSQL);
     $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
+    $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
+    $objQuery10 = mysqli_query($Connection,$strSQL10);
+
     $product_id = null;
 
     if(isset($_GET["product_id"])){
@@ -28,21 +31,21 @@
 
     if(isset($_POST["submit"])){
 
-      if ($_POST["order_amount"] > $objResult2["product_stock"]) {
+      if ($_POST["basket_amount"] > $objResult2["product_stock"]) {
 
         header("location:product_order.php?product_id=$product_id");
 
-      }elseif ($_POST["order_amount"] <= $objResult2["product_stock"]) {
+      }elseif ($_POST["basket_amount"] <= $objResult2["product_stock"]) {
 
-        $stock = $objResult2["product_stock"] - $_POST["order_amount"];
+        $stock = $objResult2["product_stock"] - $_POST["basket_amount"];
 
         $strSQL4 = "UPDATE product SET product_stock = '".$stock."' WHERE product_id = '".$product_id."' ";
         $objQuery4 = mysqli_query($Connection,$strSQL4);
 
-        $strSQL5 = "INSERT INTO order_list (order_amount,order_date,order_img,product_id,member_id) VALUES ('".$_POST["order_amount"]."','".$_POST["order_date"]."','".$_POST["order_img"]."','".$_POST["product_id"]."','".$_POST["member_id"]."')";
+        $strSQL5 = "INSERT INTO basket (basket_amount,product_id,category_id,member_id) VALUES ('".$_POST["basket_amount"]."','".$_POST["product_id"]."','".$_POST["category_id"]."','".$_POST["member_id"]."')";
         $objQuery5 = mysqli_query($Connection,$strSQL5);
 
-        header("location:order.php");
+        header("location:basket.php");
         exit();
 
       }
@@ -67,11 +70,10 @@
     <form name="product_order" method="post">
       <div class="shop_div_6">
         <span class="shop_span_7_1">จำนวนที่ต้องการสั่งซื้อ <span class="shop_span_10">(เหลือในสต๊อกจำนวน <?php echo $objResult2["product_stock"]; ?>)</span></span>
-        <input type="text" name="order_amount" id="order_amount" class="shop_input_1" value="1" required=""/>
-        <input type="submit" name="submit" id="submit" class="shop_input_2" value="ยืนยันการสั่งชื้อ"/>
+        <input type="text" name="basket_amount" id="basket_amount" class="shop_input_1" value="1" required=""/>
+        <input type="submit" name="submit" id="submit" class="shop_input_2" value="ชื้อสินค้า"/>
       </div>
-      <input type="hidden" name="order_date" id="order_date" value="<?php echo date('Y-m-d H:i:s');?>">
-      <input type="hidden" name="order_img" id="order_img" value="<?php echo "ยังไม่ได้แนปหลักฐานการโอนเงิน";?>">
+      <input type="hidden" name="category_id" id="category_id" value="<?php echo $objResult2["category_id"];?>">
       <input type="hidden" name="product_id" id="product_id" value="<?php echo $objResult2["product_id"];?>">
       <input type="hidden" name="member_id" id="member_id" value="<?php echo $objResult3["member_id"];?>">
     </form>
