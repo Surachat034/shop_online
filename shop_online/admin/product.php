@@ -39,7 +39,7 @@
 <body>
   <?php include '../includes/navbar_admin.php';?>
   <div class="shop_div_10">
-    <span class="shop_span_7_2">ข้อมูลสินค้าทั้งหมด</span>
+    <span class="shop_span_7_2">ข้อมูลสินค้าทั้งหมด <a class="shop_a_5" href="product_add.php">เพิ่มสินค้า <i class="fa fa-plus-circle"></i></a></span>
     <table class="shop_table_1">
       <tr>
         <td bgcolor="#33CCFF">ลำดับ</td>

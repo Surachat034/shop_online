@@ -45,6 +45,7 @@
           <p class="shop_p_3">ชื่อ - นามสกุล : <?php echo $objResult2["member_name"]; ?></p>
           <p class="shop_p_3">อีเมล์ : <?php echo $objResult2["member_email"]; ?></p>
           <p class="shop_p_3">ที่อยู่ : <?php echo nl2br($objResult2["member_address"]); ?></p>
+          <p class="shop_p_3">ที่อยู่ที่2 : <?php echo nl2br($objResult2["member_address2"]); ?></p>
           <p class="shop_p_3">เบอร์โทรศัพท์ : <?php echo $objResult2["member_tel"]; ?></p>
           <p class="shop_p_3">วันเวลาที่สมัครเป็นสมาชิก : <?php echo $objResult2["member_date"]; ?></p>
           <div class="shop_div_4">

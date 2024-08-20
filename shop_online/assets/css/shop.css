@@ -459,6 +459,9 @@ button.shop_button_2 {
 button.shop_button_2:hover {
   background-color: #e7e7e7;
 }
+
+
+
 button.shop_button_3 {
   font-family: mitrregular;
   background-color: #CCC;
@@ -475,6 +478,22 @@ button.shop_button_3 {
 }
 button.shop_button_3:hover {
   background-color: #e7e7e7;
+}
+button.shop_button_4 {
+  font-family: mitrregular;
+  background-color: #00ff55;
+  border: 2px solid #00ff88;
+  color: #00ff6a;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+button.shop_button_4:hover {
+  background-color: #00ff6a;
 }
 
 /* table */

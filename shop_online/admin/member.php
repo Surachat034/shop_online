@@ -48,6 +48,7 @@
         <td bgcolor="#33CCFF">ชื่อ - นามสกุล</td>
         <td bgcolor="#33CCFF">อีเมล์</td>
         <td bgcolor="#33CCFF">ที่อยู่</td>
+        <td bgcolor="#33CCFF">ที่อยู่ที่2</td>
         <td bgcolor="#33CCFF">เบอร์โทรศัพท์</td>
         <td bgcolor="#33CCFF">รูปภาพ</td>
         <td bgcolor="#33CCFF">วันเวลาที่สมัครเป็นสมาชิก</td>
@@ -64,6 +65,7 @@
         <td><?php echo $objResult2["member_name"];?></td>
         <td><?php echo $objResult2["member_email"];?></td>
         <td><?php echo nl2br($objResult2["member_address"]);?></td>
+        <td><?php echo nl2br($objResult2["member_address2"]);?></td>
         <td><?php echo $objResult2["member_tel"];?></td>
         <td><a class="shop_a_4" href="../images/member/<?php echo $objResult2["member_img"]; ?>" target="_blank"><i class="fa fa-camera-retro"></i></a></td>
         <td><?php echo $objResult2["member_date"];?></td>

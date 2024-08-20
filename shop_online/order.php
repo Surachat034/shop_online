@@ -25,6 +25,14 @@
     $strSQL3 .= "ORDER BY order_id DESC";
     $objQuery3 = mysqli_query($Connection,$strSQL3);
 
+    
+    
+    $a = 1;
+    $total = 0;
+
+    
+    
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,33 +61,41 @@
           <td bgcolor="#33CCFF"></td>
           <td bgcolor="#33CCFF">เลขออเดอร์</td>
           <td bgcolor="#33CCFF">วันเวลาที่สั่งชื้อ</td>
+          <td bgcolor="#33CCFF">ยอดสั่งซื้อ</td>
           <td bgcolor="#33CCFF">จัดส่ง</td>
-          <td bgcolor="#33CCFF">Tracking Number</td>
+          
           <td bgcolor="#33CCFF">รวมเป็นเงิน</td>
+          <td bgcolor="#33CCFF">Tracking Number</td>
           <td bgcolor="#33CCFF">สถานะการสั่งซื้อ</td>
           <td bgcolor="#33CCFF">รายละเอียด</td>
           <td bgcolor="#33CCFF">หลักฐานการโอนเงิน</td>
         </tr>
         <?php
         while ($objResult3 = mysqli_fetch_array($objQuery3,MYSQLI_ASSOC)) {
+          
         ?>
+        
         <tr>
           <td><a class="shop_a_3" href="JavaScript:if(confirm('คุณต้องการลบออเดอร์ใช่หรือไม่')==true){window.location='order_delete.php?order_id=<?php echo $objResult2["order_id"];?>&order_ordernumber=<?php echo $objResult2["order_ordernumber"];?>';}"><i class="fa fa-times"></i></a></td>
           <td><?php echo $objResult3["order_ordernumber"]; ?></td>
           <td><?php echo $objResult3["order_date"]; ?></td>
+          <td><?php echo $objResult3["order_price"]." บาท"; ?></td>
           <td><?php echo $objResult3["transport_name"]." ค่าจัดส่ง ".$objResult3["transport_price"]." บาท"; ?></td>
-          <td><?php echo $objResult3["tracking_number"]; ?></td>
+          
           <td><?php echo $objResult3["order_price"] + $objResult3["transport_price"]." บาท";?></td>
+          <td><?php echo $objResult3["tracking_number"]; ?></td>
           <td>
-            <?php
-            if ($objResult3["order_status"] == 'อยู่ระหว่างรอการส่งหลักฐานการโอนเงิน') {
+          <?php
+              if ($objResult3["order_status"] == 'อยู่ระหว่างรอการส่งหลักฐานการโอนเงิน') {
               ?>
-              <span>อยู่ระหว่างรอการส่งหลักฐานการโอนเงิน <a class="shop_a_4" href="payment.php">ข้อมูลการชำระเงิน</a></span>
+              <span><b style="color:red;">อยู่ระหว่างรอการส่งหลักฐานการโอนเงิน </b><a class="shop_a_4" href="payment.php">ข้อมูลการชำระเงิน</a></span>
               <?php
-            }else{
-              echo $objResult3["order_status"];
-            }
-            ?>
+              } else {
+             // แสดงข้อความในสีเขียว
+               echo '<span style="color:#00E676;">' . htmlspecialchars($objResult3["order_status"]) . '</span>';
+              }
+              ?>
+
           </td>
           <td><a class="shop_a_2" href="order_view.php?order_ordernumber=<?php echo $objResult3["order_ordernumber"];?>"><i class="fa fa-eye"></i></a></td>
           <td><a class="shop_a_2" href="money_transfer_slip.php?order_id=<?php echo $objResult3["order_id"];?>"><i class="fa fa-clipboard"></i></a></td>

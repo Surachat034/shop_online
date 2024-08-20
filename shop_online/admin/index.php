@@ -27,7 +27,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title><?php echo $objResult["shop_information_title"] ?></title>
+  <title> <?php echo $objResult["shop_information_title"] ?></title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/body.css">
   <link rel="stylesheet" type="text/css" href="../assets/css/navigationbar.css">
@@ -40,25 +40,28 @@
   </div>
   <div class="shop_div_10">
     <div class="shop_div_10_1">
-      <span class="shop_span_9">หมวดหมู่ -> จัดการสินค้า <i class="fa fa-shopping-basket"></i></span>
-      <span class="shop_span_9_1"><a class="shop_a_6" href="product_add.php"><i class="fa fa-angle-double-right"></i> เพิ่มสินค้า</a></span>
+      <span class="shop_span_9">หมวดหมู่ -> จัดการข้อมูล<i class="fa fa-shopping-basket"></i></span>
+      
       <span class="shop_span_9_1"><a class="shop_a_6" href="product.php"><i class="fa fa-angle-double-right"></i> ข้อมูลสินค้า</a></span>
-      <span class="shop_span_9_1"><a class="shop_a_6" href="category_add.php"><i class="fa fa-angle-double-right"></i> เพิ่มหมวดหมู่สินค้า</a></span>
+     
       <span class="shop_span_9_1"><a class="shop_a_6" href="category.php"><i class="fa fa-angle-double-right"></i> ข้อมูลหมวดหมู่สินค้า</a></span>
+      
+    </div>
+    <div class="shop_div_10_1">
+      <span class="shop_span_9">หมวดหมู่ -> จัดการการสั่งซื่อสินค้า <i class="fa fa-shopping-basket"></i></span>
+      
+    
       <span class="shop_span_9_1"><a class="shop_a_6" href="order_list.php"><i class="fa fa-angle-double-right"></i> รายการสั่งชื้อสินค้าทั้งหมด</a></span>
     </div>
     <div class="shop_div_10_1">
       <span class="shop_span_9">หมวดหมู่ -> จัดการข้อมูลทั่วไป <i class="fa fa-id-card"></i></span>
       <span class="shop_span_9_1"><a class="shop_a_6" href="member.php"><i class="fa fa-angle-double-right"></i> ข้อมูลสมาชิก</a></span>
-      <span class="shop_span_9_1"><a class="shop_a_6" href="payment.php"><i class="fa fa-angle-double-right"></i> ข้อมูลการชำระเงิน</a></span>
-      <span class="shop_span_9_1"><a class="shop_a_6" href="transport.php"><i class="fa fa-angle-double-right"></i> ข้อมูลการขนส่งสินค้า</a></span>
-      
+      <span class="shop_span_9_1"><a class="shop_a_6" href="payment.php"><i class="fa fa-angle-double-right"></i> ข้อมูลธนาคารชำระเงิน</a></span>
+      <span class="shop_span_9_1"><a class="shop_a_6" href="transport.php"><i class="fa fa-angle-double-right"></i> ข้อมูลบริษัทจัดส่งสินค้า</a></span>
     </div>
-    <!--
-    <div class="shop_div_10_1">
-      <span class="shop_span_9">หมวดหมู่ -> จัดการหน้าเว็บไซต์และผู้ดูแลระบบ <i class="fa fa-cog"></i></span>
-      <span class="shop_span_9_1"><a class="shop_a_6" href="title.php"><i class="fa fa-angle-double-right"></i> กำหนด Title เว็บ</a></span>
-    </div>  -->
+    
+   
+   
   </div>
   <hr>
   <?php include '../includes/footer.php';?>

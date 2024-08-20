@@ -54,8 +54,8 @@
 </head>
 <body>
   <ul>
-    <li><a><?php echo $objResult['shop_information_name']; ?></a></li>
-    <li><a href="index.php"><i class="fa fa-home"></i> หน้าแรก</a></li>
+    
+    <li><a href="index.php"><i class="fa fa-home"></i> TP ร้านค้าออนไลน์</a></li>
     <li class="dropdown">
       <a href="javascript:void(0)" class="dropbtn"><i class="fa fa-list-alt"></i> หมวดหมู่ทั้งหมด <i class="fa fa-caret-down"></i></a>
       <div class="dropdown-content">

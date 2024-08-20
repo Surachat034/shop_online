@@ -15,6 +15,15 @@
     $strSQL10 = "SELECT * FROM category ORDER BY category_num ASC";
     $objQuery10 = mysqli_query($Connection,$strSQL10);
 
+    $strSQL2 = "SELECT * FROM member INNER JOIN order_list ON member.member_id = order_list.member_id WHERE order_list.order_ordernumber = '".$_GET["order_ordernumber"]."'";
+    $objQuery2 = mysqli_query($Connection,$strSQL2);
+    $objResult2 = mysqli_fetch_array($objQuery2,MYSQLI_ASSOC);
+
+    $strSQL2 = "SELECT * FROM order_list INNER JOIN (member,transport) ON (order_list.member_id = member.member_id AND order_list.transport_id = transport.transport_id) ORDER BY order_id DESC";
+    $objQuery2 = mysqli_query($Connection,$strSQL2);
+
+    
+
     $order_ordernumber = null;
 
     if(isset($_GET["order_ordernumber"])){
@@ -28,6 +37,9 @@
     $objQuery3 = mysqli_query($Connection,$strSQL3);
     $objResult3 = mysqli_fetch_array($objQuery3,MYSQLI_ASSOC);
 
+    
+
+    
     $a = 1;
     $total = 0;
 
@@ -45,7 +57,11 @@
 <body>
   <?php include 'includes/navbar.php';?>
   <div class="shop_div_2">
-    <span class="shop_span_7">รายละเอียดออเดอร์ <?php echo $objResult3["order_ordernumber"]; ?></span>
+    <span class="shop_span_7">รายละเอียดออเดอร์ <?php echo $objResult3["order_ordernumber"] ; ?>
+    <br> ชื่อผู้สั่งสินค้า : <?php echo $objResult2["member_name"]; ?>  
+    <br> ที่อยู่ : <?php echo nl2br($objResult2["order_address"]);  ?> 
+    <br> เบอร์โทรศัพท์ : <?php echo $objResult2["member_tel"]; ?>
+   </span>
     <div class="shop_div_7">
       <table class="shop_table_1">
         <tr>

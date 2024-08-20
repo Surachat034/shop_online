@@ -24,14 +24,14 @@
 
         move_uploaded_file($_FILES["member_img"]["tmp_name"], $target_file);
 
-        $strSQL3 = "UPDATE member SET member_password = '".$_POST["member_password"]."' , member_name = '".$_POST["member_name"]."' , member_email = '".$_POST["member_email"]."' , member_address = '".$_POST["member_address"]."' , member_tel = '".$_POST["member_tel"]."' , member_img = '".$_FILES["member_img"]["name"]."' WHERE member_username = '".$_SESSION['member_username']."' ";
+        $strSQL3 = "UPDATE member SET member_password = '".$_POST["member_password"]."' , member_name = '".$_POST["member_name"]."' , member_email = '".$_POST["member_email"]."' , member_address = '".$_POST["member_address"]."' , member_address2 = '".$_POST["member_address2"]."' , member_tel = '".$_POST["member_tel"]."' , member_img = '".$_FILES["member_img"]["name"]."' WHERE member_username = '".$_SESSION['member_username']."' ";
         $objQuery3 = mysqli_query($Connection,$strSQL3);
 
         header("location:profile.php");
 
       }else{
 
-        $strSQL3 = "UPDATE member SET member_password = '".$_POST["member_password"]."' , member_name = '".$_POST["member_name"]."' , member_email = '".$_POST["member_email"]."' , member_address = '".$_POST["member_address"]."' , member_tel = '".$_POST["member_tel"]."' WHERE member_username = '".$_SESSION['member_username']."' ";
+        $strSQL3 = "UPDATE member SET member_password = '".$_POST["member_password"]."' , member_name = '".$_POST["member_name"]."' , member_email = '".$_POST["member_email"]."' , member_address = '".$_POST["member_address"]."' , member_address2 = '".$_POST["member_address2"]."', member_tel = '".$_POST["member_tel"]."' WHERE member_username = '".$_SESSION['member_username']."' ";
         $objQuery3 = mysqli_query($Connection,$strSQL3);
 
         header("location:profile.php");
@@ -65,6 +65,8 @@
         <input type="text" name="member_email" id="member_email" class="shop_input_1" value="<?php echo $objResult2["member_email"]; ?>"/>
         <span class="shop_span_8">ที่อยู่</span>
         <textarea name="member_address" id="member_address" class="shop_textarea_1"><?php echo $objResult2["member_address"]; ?></textarea>
+        <span class="shop_span_8">ที่อยู่ที่2</span>
+         <textarea name="member_address2" id="member_address2" class="shop_textarea_1"><?php echo $objResult2["member_address2"]; ?></textarea>
         <span class="shop_span_8">เบอร์โทรศัพท์</span>
         <input type="text" name="member_tel" id="member_tel" class="shop_input_1" value="<?php echo $objResult2["member_tel"]; ?>"/>
         <span class="shop_span_8">รูปภาพ</span>
